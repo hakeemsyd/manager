@@ -6,12 +6,10 @@
  * @flow
  */
 
-import {Header} from './components/common';
-import LoginForm from './components/LoginForm';
 import reducers from './reducers';
+import RouterComponent from './Router';
 import firebase from 'firebase';
 import React from 'react';
-import {View} from 'react-native';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import ReduxThunk from 'redux-thunk';
@@ -35,10 +33,7 @@ export default class App extends React.Component {
   render() {
     return (
         <Provider store={store}>
-          <View>
-            <Header titleText='Manager'/>
-            <LoginForm />
-          </View>
+          <RouterComponent />
         </Provider>
     );
   }

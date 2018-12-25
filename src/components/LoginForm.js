@@ -45,11 +45,10 @@ class LoginForm extends Component {
             secureTextEntry
           />
         </CardSection>
-        <Text style={styles.errorTextStyle}></Text>
+          <Text style={styles.errorTextStyle}>{this.props.error}</Text>
         <CardSection>
           {this.renderButton()}
         </CardSection>
-        <Text style={styles.errorTextStyle}>{this.props.error}</Text>
       </Card>
     );
   }
