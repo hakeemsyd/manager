@@ -13,7 +13,7 @@ import firebase from 'firebase';
 import React from 'react';
 import {View} from 'react-native';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import ReduxThunk from 'redux-thunk';
 
 const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));

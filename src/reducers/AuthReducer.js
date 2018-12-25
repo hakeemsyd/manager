@@ -28,7 +28,7 @@ export default (state = INITIAL_STATE, action) => {
       console.log('action!!');
       return {...state, user: null, loading: false, error: action.payload};
     case SIGNUP_USER_SUCCESS:
-      return {...state, loading: false};
+      return {...state, loading: false, user: action.payload, error: ''};
     case LOGIN_STARTED:
       return {...state, loading: action.payload};
     default:

@@ -12,3 +12,6 @@
   5. Paste firebase setup in App.js componentWillMount lifecycle method. Replace var with const
   6. Replace double quotes with single quotes.
   7. At top import firebase from 'firebase';
+  8. Navigation library
+      npm install --save react-native-router-flux@3.35.0.
+  9.
