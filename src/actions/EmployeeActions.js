@@ -1,18 +1,27 @@
 import {
   CREATE_EMPLOYEE,
   CREATE_EMPLOYEE_STARTED,
+  DELETE_EMPLOYEE_ERROR,
+  DELETE_EMPLOYEE_STARTED,
   EMPLOYEE_CREATE_ERROR,
   EMPLOYEE_CREATED,
+  EMPLOYEE_DELETED,
   EMPLOYEE_SAVED,
   GET_EMPLOYEES_COMPLETED,
   GET_EMPLOYEES_INPROGRESS,
+  RESET_FORM,
   SAVE_EMPLOYEE_ERROR,
   SAVE_EMPLOYEE_STARTED,
-  UPDATE_EMPLOYEE
+  UPDATE_EMPLOYEE,
 } from './types';
 import firebase from 'firebase';
 import {Actions} from 'react-native-router-flux';
 
+export const resetForm = () => {
+  return {
+    type: RESET_FORM,
+  };
+}
 export const updateEmployee = ({prop, value}) => {
   return {
     type: UPDATE_EMPLOYEE,
@@ -55,7 +64,6 @@ export const getEmployees = () => {
 }
 
 export const saveEmployee = ({name, phone, shift, id}) => {
-  console.log(id);
   return (dispatch) => {
     dispatch({type: SAVE_EMPLOYEE_STARTED, payload: true});
     const {currentUser} = firebase.auth();
@@ -72,8 +80,19 @@ export const saveEmployee = ({name, phone, shift, id}) => {
   };
 }
 
-export const deleteEmployee = (uid) => {
+export const deleteEmployee = ({id}) => {
   return (dispatch) => {
-
+    dispatch({type: DELETE_EMPLOYEE_STARTED, payload: true});
+    const {currentUser} = firebase.auth();
+    firebase.database().ref(`/users/${currentUser.uid}/employees/${id}`)
+      .remove()
+      .then(() => {
+        dispatch({type: EMPLOYEE_DELETED});
+        // following line can also be replaced with Actions.pop();
+        Actions.employeeList({type: 'reset'});
+      }).catch(error => {
+        console.log(error);
+        dispatch({type: DELETE_EMPLOYEE_ERROR, payload: error});
+      });
   };
 }

@@ -1,12 +1,14 @@
 import {deleteEmployee, saveEmployee, updateEmployee} from './../actions';
-import {Button, Card, CardSection, Spinner} from './common';
+import {Button, Card, CardSection, Confirm, Spinner} from './common';
 import EmployeeForm from './EmployeeForm';
 import _ from 'lodash';
 import React, { Component } from 'react';
 import {Text, View} from 'react-native';
+import Communications from 'react-native-communications';
 import {connect} from 'react-redux';
 
 class EmployeeEdit extends Component {
+  state = {showModal: false};
 
   componentWillMount() {
     // pre populate the redux store with pre existing employee
@@ -21,7 +23,20 @@ class EmployeeEdit extends Component {
   }
 
   onDelete() {
-    this.props.deleteEmployee(this.props.uid);
+    this.setState({showModal: !this.state.showModal});
+  }
+
+  onAccept() {
+    this.props.deleteEmployee({id: this.props.employee.uid});
+  }
+
+  onDecline() {
+    this.setState({showModal: false});
+  }
+
+  onText() {
+    const {phone, shift} = this.props;
+    Communications.text(phone, `Your upcoming shift is on ${shift}` )
   }
 
   renderSaveAndDeleteButtons() {
@@ -35,6 +50,9 @@ class EmployeeEdit extends Component {
         <CardSection>
           <Button onPress={this.onDelete.bind(this)}>Delete</Button>
         </CardSection>
+        <CardSection>
+          <Button onPress={this.onText.bind(this)}>Text</Button>
+        </CardSection>
       </View>;
   }
 
@@ -44,6 +62,12 @@ class EmployeeEdit extends Component {
         <EmployeeForm {...this.props} />
         <Text style={styles.errorTextStyle}>{this.props.error}</Text>
         {this.renderSaveAndDeleteButtons()}
+        <Confirm
+          onAccept={this.onAccept.bind(this)}
+          onDecline={this.onDecline.bind(this)}
+          visible={this.state.showModal}>
+          Are you sure you want to delete?
+        </Confirm>
       </Card>
     );
   }

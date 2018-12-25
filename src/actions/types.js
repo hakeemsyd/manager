@@ -14,3 +14,7 @@ export const GET_EMPLOYEES_COMPLETED = 'get_employees_completed';
 export const SAVE_EMPLOYEE_STARTED = 'save_employee_started';
 export const EMPLOYEE_SAVED = 'employee_saved';
 export const SAVE_EMPLOYEE_ERROR = 'save_employee_error';
+export const DELETE_EMPLOYEE_ERROR = 'delete_employee_error';
+export const EMPLOYEE_DELETED = 'employee_deleted';
+export const DELETE_EMPLOYEE_STARTED = 'delete_employee_started';
+export const RESET_FORM = 'reset_form';

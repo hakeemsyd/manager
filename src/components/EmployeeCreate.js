@@ -1,4 +1,4 @@
-import {createEmployee} from './../actions';
+import {createEmployee, resetForm} from './../actions';
 import {Button, Card, CardSection, Spinner} from './common';
 import EmployeeForm from './EmployeeForm';
 import React, { Component } from 'react';
@@ -6,6 +6,9 @@ import {Text} from 'react-native';
 import {connect} from 'react-redux';
 
 class EmployeeCreate extends Component {
+  componentWillMount() {
+    this.props.resetForm();
+  }
 
   onCreatePressed() {
     const {name, phone, shift} = this.props;
@@ -48,4 +51,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {createEmployee})(EmployeeCreate);
+export default connect(mapStateToProps, {createEmployee, resetForm})(EmployeeCreate);
