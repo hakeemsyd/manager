@@ -11,3 +11,6 @@ export const EMPLOYEE_CREATED = 'employee_created';
 export const EMPLOYEE_CREATE_ERROR = 'employee_create_error';
 export const GET_EMPLOYEES_INPROGRESS = 'get_employees_inprogress';
 export const GET_EMPLOYEES_COMPLETED = 'get_employees_completed';
+export const SAVE_EMPLOYEE_STARTED = 'save_employee_started';
+export const EMPLOYEE_SAVED = 'employee_saved';
+export const SAVE_EMPLOYEE_ERROR = 'save_employee_error';

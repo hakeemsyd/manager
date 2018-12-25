@@ -1,4 +1,5 @@
 import EmployeeCreate from './components/EmployeeCreate';
+import EmployeeEdit from './components/EmployeeEdit';
 import EmployeeList from './components/EmployeeList';
 import LoginForm from './components/LoginForm';
 import React from 'react';
@@ -29,6 +30,10 @@ class RouterComponent extends React.Component {
               key="employeeCreate"
               component={EmployeeCreate}
               title="Create Employee"/>
+            <Scene
+              key="employeeEdit"
+              component={EmployeeEdit}
+              title="Edit Employee"/>
           </Scene>
         </Scene>
       </Router>
