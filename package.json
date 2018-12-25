@@ -9,6 +9,7 @@
   "dependencies": {
     "asap": "^2.0.6",
     "firebase": "^5.7.1",
+    "lodash": "^4.17.11",
     "react": "16.6.3",
     "react-addons-pure-render-mixin": "^15.0.2",
     "react-is": "^16.7.0",
